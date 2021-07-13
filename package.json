@@ -9,13 +9,17 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["shopbox", "catalog"],
+  "keywords": [
+    "shopbox",
+    "catalog"
+  ],
   "author": "boris.ding82@gmail.com",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.1",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
+    "eta": "^1.12.3",
     "express": "^4.17.1"
   },
   "devDependencies": {
