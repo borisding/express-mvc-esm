@@ -1,21 +1,7 @@
 import { Router } from 'express';
+import * as homeController from '../controllers/homeController.js';
 
 const home = Router();
-
-const homeProps = {
-  title: 'Home',
-  page: 'home'
-};
-
-// GET method for index action
-export function index(req, res, next) {
-  try {
-    res.render('pages/home', homeProps);
-  } catch (error) {
-    next(error);
-  }
-}
-
-home.get('/', index);
+home.get('/', homeController.index);
 
 export default home;
