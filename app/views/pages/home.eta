@@ -1,0 +1,3 @@
+<% layout('../layouts/main') %>
+
+<h1 class="title">Welcome to Shopbox landing page!</h1>

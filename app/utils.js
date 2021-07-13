@@ -3,9 +3,8 @@ import path from 'path';
 export const isDev = process.env.NODE_ENV === 'development';
 
 export const paths = {
-  controlles: path.resolve('controlles'),
-  middleware: path.resolve('middleware'),
-  models: path.resolve('models'),
-  routers: path.resolve('routers'),
-  views: path.resolve('views')
+  middleware: path.resolve('app/middleware'),
+  models: path.resolve('app/models'),
+  routers: path.resolve('app/routers'),
+  views: path.resolve('app/views')
 };
