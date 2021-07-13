@@ -12,9 +12,10 @@ eta.configure({ cache: !env.isProd });
 app
   .engine('eta', eta.renderFile)
   .set('view engine', 'eta')
-  .set('views', `${paths.public}/views`);
+  .set('views', `${paths.assets}/views`);
 
 // app middleware
+app.use(express.static(paths.public));
 
 // app routes
 app.use('/', routers.home);

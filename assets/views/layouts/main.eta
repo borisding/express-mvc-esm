@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="csrf-token" content="<%=it.csrfToken%>">
   <title><%=process.env.APP_NAME%> | <%=it.title%></title>
-  
+  <link rel="icon" type="image/png" href="/icons/favicon.ico">
 </head>
 <body>
   <section class="section">
