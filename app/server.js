@@ -3,16 +3,16 @@ import chalk from 'chalk';
 import * as eta from 'eta';
 
 import * as routers from './routers/index.js';
-import { isDev, paths } from './utils.js';
+import { env, paths } from '../utils/index.js';
 
 const app = express();
 
-// app view engine and directories config
-eta.configure({ cache: !isDev });
+// app view engine and directory config
+eta.configure({ cache: !env.isProd });
 app
   .engine('eta', eta.renderFile)
   .set('view engine', 'eta')
-  .set('views', [paths.views]);
+  .set('views', `${paths.public}/views`);
 
 // app middleware
 
@@ -20,7 +20,7 @@ app
 app.use('/', routers.home);
 
 // running express app server
-const PORT = parseInt(process.env.PORT, 10) ?? 5000;
+const PORT = parseInt(process.env.PORT, 10) || 5000;
 app
   .listen(PORT, () => {
     console.log(chalk.cyan('App server is up, listening PORT:'), PORT);
