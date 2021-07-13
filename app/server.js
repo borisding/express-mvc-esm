@@ -1,21 +1,18 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import chalk from 'chalk';
 import * as eta from 'eta';
 
 import * as routers from './routers/index.js';
 import { isDev, paths } from './utils.js';
 
-// load node environment variables
-dotenv.config();
-
 const app = express();
 
 // app view engine and directories config
 eta.configure({ cache: !isDev });
-app.engine('eta', eta.renderFile);
-app.set('view engine', 'eta');
-app.set('views', [paths.views]);
+app
+  .engine('eta', eta.renderFile)
+  .set('view engine', 'eta')
+  .set('views', [paths.views]);
 
 // app middleware
 
