@@ -1,0 +1,5 @@
+<% layout('../layouts/main') %>
+
+<div class="notification is-warning">
+  (<%=it.code%>) <%=it.message%>
+</div>

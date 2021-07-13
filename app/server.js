@@ -1,7 +1,13 @@
 import express from 'express';
 import chalk from 'chalk';
+import helmet from 'helmet';
+import hpp from 'hpp';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import favicon from 'serve-favicon';
 import * as eta from 'eta';
 
+import * as middleware from './middleware/index.js';
 import * as routers from './routers/index.js';
 import { env, paths } from '../utils/index.js';
 
@@ -15,10 +21,22 @@ app
   .set('views', `${paths.assets}/views`);
 
 // app middleware
-app.use(express.static(paths.public));
+app
+  .use(helmet())
+  .use(cookieParser())
+  .use(compression())
+  .use(express.json())
+  .use(express.urlencoded({ extended: true }))
+  .use(express.static(paths.public))
+  .use(favicon(`${paths.public}/icons/favicon.ico`))
+  .use(hpp());
 
 // app routes
 app.use('/', routers.home);
+
+// app error handlers
+app.use(middleware.notFound());
+app.use(middleware.errorHandler());
 
 // running express app server
 const PORT = parseInt(process.env.PORT, 10) || 5000;

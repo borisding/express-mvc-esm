@@ -1,0 +1,10 @@
+<% layout('../layouts/main') %>
+
+<div class="notification is-danger">
+  <h3>Something went wrong.</h3>
+  <ul>
+    <% it.errors.forEach(error => { %>
+      <li>(<%=error.code%>) <%=error.message%></li>
+    <% }) %>
+  </ul>
+</div>
