@@ -8,12 +8,7 @@ import csurf from 'csurf';
 import favicon from 'serve-favicon';
 import * as eta from 'eta';
 
-import {
-  httpLogger,
-  csrfToken,
-  notFound,
-  errorHandler
-} from './middleware/index.js';
+import * as middleware from './middleware/index.js';
 import * as routers from './routers/index.js';
 import { env, paths } from '../utils/index.js';
 
@@ -29,21 +24,21 @@ app
 // app middleware
 app
   .use(helmet())
-  .use(httpLogger())
+  .use(middleware.httpLogger())
   .use(cookieParser())
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
   .use(express.static(paths.public))
   .use(favicon(`${paths.public}/icons/favicon.ico`))
-  .use(csurf({ cookie: true }), csrfToken());
+  .use(csurf({ cookie: true }), middleware.csrfToken());
 
 // app routes
 app.use('/', routers.home);
 
 // app error handlers
-app.use(notFound());
-app.use(errorHandler());
+app.use(middleware.notFound());
+app.use(middleware.errorHandler());
 
 // running express app server
 const PORT = parseInt(process.env.PORT, 10) || 5000;
