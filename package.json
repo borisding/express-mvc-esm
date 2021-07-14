@@ -1,7 +1,7 @@
 {
-  "name": "shopbox",
+  "name": "express-esm-mvc",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node.js Express MVC boilerplate with ESM support",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,14 +9,15 @@
     "dev": "cross-env NODE_ENV=development nodemon -r dotenv/config index.js",
     "lint:js": "eslint . --fix",
     "lint:scss": "stylelint **/*.scss --fix --allow-empty-input",
-    "lint": "npm-run-all lint:scss lint:js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npm-run-all lint:scss lint:js"
   },
   "keywords": [
-    "shopbox",
-    "catalog"
+    "nodejs",
+    "express",
+    "mvc",
+    "boilerplate"
   ],
-  "author": "boris.ding82@gmail.com",
+  "author": "Boris Ding Poh Hing",
   "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.1",
