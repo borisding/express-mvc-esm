@@ -6,6 +6,7 @@ const paths = {
   app: `${root}/app`,
   assets: `${root}/assets`,
   public: `${root}/public`,
+  storage: `${root}/storage`,
   utils: `${root}/utils`
 };
 

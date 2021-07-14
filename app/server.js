@@ -9,7 +9,12 @@ import favicon from 'serve-favicon';
 import * as eta from 'eta';
 
 import * as routers from './routers/index.js';
-import { csrfToken, notFound, errorHandler } from './middleware/index.js';
+import {
+  httpLogger,
+  csrfToken,
+  notFound,
+  errorHandler
+} from './middleware/index.js';
 import { env, paths } from '../utils/index.js';
 
 const app = express();
@@ -24,6 +29,7 @@ app
 // app middleware
 app
   .use(helmet())
+  .use(httpLogger())
   .use(cookieParser())
   .use(compression())
   .use(express.json())
