@@ -18,7 +18,7 @@ eta.configure({ cache: !env.isProd });
 app
   .engine('eta', eta.renderFile)
   .set('view engine', 'eta')
-  .set('views', `${paths.app}/views`);
+  .set('views', `${paths.assets}/views`);
 
 // app middleware
 app
