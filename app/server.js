@@ -14,7 +14,7 @@ import { env, paths } from '../utils/index.js';
 const app = express();
 
 // app view engine and directory config
-eta.configure({ cache: !env.isProd });
+eta.configure({ cache: env.isProd });
 app
   .engine('eta', eta.renderFile)
   .set('view engine', 'eta')
