@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import csurf from 'csurf';
 import favicon from 'serve-favicon';
 import * as eta from 'eta';
 
@@ -26,10 +27,10 @@ app
   .use(cookieParser())
   .use(compression())
   .use(express.json())
-  .use(express.urlencoded({ extended: true }))
+  .use(express.urlencoded({ extended: true }), hpp())
   .use(express.static(paths.public))
   .use(favicon(`${paths.public}/icons/favicon.ico`))
-  .use(hpp());
+  .use(csurf({ cookie: true }), middleware.csrfToken());
 
 // app routes
 app.use('/', routers.home);
