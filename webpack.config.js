@@ -5,6 +5,7 @@ import AssetsPlugin from 'assets-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
+import NodemonPlugin from 'nodemon-webpack-plugin';
 
 import { env, paths } from './utils/index.js';
 import { getDefinedVars } from './env.loader.js';
@@ -121,5 +122,18 @@ const webpackConfig = {
     })
   ]
 };
+
+if (isDev) {
+  webpackConfig.plugins = [
+    ...webpackConfig.plugins,
+    new NodemonPlugin({
+      ext: 'js',
+      verbose: false,
+      script: `${paths.root}/index.js`,
+      ignore: ['node_modules', paths.storage, paths.assets],
+      watch: [paths.app, paths.utils]
+    })
+  ];
+}
 
 export default webpackConfig;
