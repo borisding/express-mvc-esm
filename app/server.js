@@ -30,7 +30,7 @@ app
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
   .use(express.static(paths.public))
-  .use(favicon(`${paths.public}/icons/favicon.ico`))
+  .use(favicon(`${paths.public}/favicon.ico`))
   .use(csurf({ cookie: true }), middleware.csrfToken());
 
 // app routes

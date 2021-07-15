@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
+import AssetsPlugin from 'assets-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
@@ -54,10 +55,8 @@ const webpackConfig = {
   output: {
     publicPath: process.env.PUBLIC_PATH,
     path: pathToBuild,
-    filename: isDev ? 'scripts/[name].js' : 'scripts/[id].[contenthash:8].js',
-    chunkFilename: isDev
-      ? 'scripts/[name].chunk.js'
-      : 'scripts/[id].chunk.[contenthash:8].js'
+    filename: isDev ? '[name].js' : '[id].[contenthash:8].js',
+    chunkFilename: isDev ? '[name].chunk.js' : '[id].chunk.[contenthash:8].js'
   },
   optimization: {
     // @see: https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
@@ -111,12 +110,14 @@ const webpackConfig = {
   plugins: [
     new webpack.DefinePlugin(getDefinedVars().stringified),
     new MiniCssExtractPlugin({
-      filename: isDev
-        ? 'styles/[name].css'
-        : 'styles/[name].[contenthash:8].css',
-      chunkFilename: isDev
-        ? 'styles/[id].css'
-        : 'styles/[id].chunk.[contenthash:8].css'
+      filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
+      chunkFilename: isDev ? '[id].css' : '[id].chunk.[contenthash:8].css'
+    }),
+    new AssetsPlugin({
+      filename: 'assets.js',
+      prettyPrint: isDev,
+      path: pathToBuild,
+      processOutput: assets => `export default ${JSON.stringify(assets)}`
     })
   ]
 };
