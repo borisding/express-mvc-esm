@@ -53,7 +53,7 @@ const webpackConfig = {
     ...getModuleEntry()
   },
   output: {
-    publicPath: process.env.PUBLIC_PATH,
+    publicPath: process.env.PUBLIC_PATH || '/',
     path: pathToBuild,
     filename: isDev ? '[name].js' : '[id].[contenthash:8].js',
     chunkFilename: isDev ? '[name].chunk.js' : '[id].chunk.[contenthash:8].js'
