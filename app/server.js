@@ -2,10 +2,10 @@ import express from 'express';
 import chalk from 'chalk';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import favicon from 'serve-favicon';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import csurf from 'csurf';
-import favicon from 'serve-favicon';
 import * as eta from 'eta';
 
 import * as middleware from './middleware/index.js';
@@ -48,5 +48,5 @@ app
   })
   .on('error', err => {
     console.error(chalk.red(err.message));
-    process.exit(-1);
+    process.exit(1);
   });
