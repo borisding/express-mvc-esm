@@ -20,6 +20,11 @@
     "*.scss",
     "*.sass"
   ],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not IE 10"
+  ],
   "keywords": [
     "nodejs",
     "express",
