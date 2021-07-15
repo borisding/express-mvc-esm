@@ -35,6 +35,10 @@
     "mvc",
     "boilerplate"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/borisding/express-mvc-esm.git"
+  },
   "author": "Boris Ding Poh Hing",
   "license": "MIT",
   "dependencies": {
