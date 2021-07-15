@@ -11,8 +11,9 @@ import { getDefinedVars } from './env.loader.js';
 const { isDev, isProd } = env;
 const sourceMap = isProd;
 
-const scriptsPath = `${paths.assets}/scripts`;
-const stylesPath = `${paths.assets}/styles`;
+const pathToScripts = `${paths.assets}/scripts`;
+const pathToStyles = `${paths.assets}/styles`;
+const pathToBuild = `${paths.public}/build`;
 
 // populate respective module JS and SCSS files as entry points
 const getModuleEntry = () => {
@@ -25,12 +26,12 @@ const getModuleEntry = () => {
     // check javascript file for pages, if any
     const { name, ext } = path.parse(file);
     if (ext === '.js' && !excludeScriptFiles.includes(name)) {
-      entryFiles[name] = [`${scriptsPath}/${file}`];
+      entryFiles[name] = [`${pathToScripts}/${file}`];
     }
 
     // check if companion module has .scss file as well
     // if there is, push as part of the module entry point
-    const moduleScss = `${stylesPath}/${name}.scss`;
+    const moduleScss = `${pathToStyles}/${name}.scss`;
     if (fs.existsSync(moduleScss) && !excludeStyleFiles.includes(name)) {
       entryFiles[name].push(moduleScss);
     }
@@ -47,12 +48,12 @@ const webpackConfig = {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss']
   },
   entry: {
-    main: `${stylesPath}/main.scss`,
+    main: `${pathToStyles}/main.scss`,
     ...getModuleEntry()
   },
   output: {
     publicPath: process.env.PUBLIC_PATH,
-    path: `${paths.public}/static`,
+    path: pathToBuild,
     filename: isDev ? 'scripts/[name].js' : 'scripts/[id].[contenthash:8].js',
     chunkFilename: isDev
       ? 'scripts/[name].chunk.js'
