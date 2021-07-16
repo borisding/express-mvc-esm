@@ -105,6 +105,20 @@ const webpackConfig = {
             options: { sourceMap }
           }
         ]
+      },
+      {
+        test: /\.(svg|png|jpe?g|gif)(\?.*)?$/i,
+        type: 'asset',
+        generator: {
+          emit: true
+        }
+      },
+      {
+        test: /\.(eot|ttf|woff2?)(\?.*)?$/i,
+        type: 'asset',
+        generator: {
+          emit: true
+        }
       }
     ]
   },
