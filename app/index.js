@@ -9,9 +9,14 @@ import * as eta from 'eta';
 
 import * as middleware from './middleware/index.js';
 import * as routers from './routers/index.js';
+import assets from '../public/build/assets.js';
 import { env, paths } from '../utils/index.js';
 
 const app = express();
+
+// locals variable assignments for template usage
+app.locals.assets = assets;
+app.locals.isDev = env.isDev;
 
 // app view engine and directory config
 eta.configure({ cache: env.isProd });

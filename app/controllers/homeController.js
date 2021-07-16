@@ -1,6 +1,5 @@
 const homeProps = {
-  title: 'Home',
-  page: 'home'
+  title: 'Home'
 };
 
 // GET method for index action

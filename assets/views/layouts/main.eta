@@ -7,6 +7,7 @@
   <meta name="csrf-token" content="<%=it.csrfToken%>">
   <title><%=process.env.APP_NAME%> | <%=it.title%></title>
   <link rel="icon" type="image/png" href="/favicon.ico">
+   <%~includeFile('../partials/styles', it)%>
 </head>
 <body>
   <section class="section">
@@ -14,5 +15,6 @@
     <%~it.body%>
     </div>
   </section>
+  <%~includeFile('../partials/scripts', it)%>
 </body>
 </html>

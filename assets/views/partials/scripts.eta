@@ -1,0 +1,9 @@
+<% if(it.assets?.vendor?.js) {%>
+<script src="<%=it.assets?.vendor?.js%>" defer></script>
+<%}%>
+<% if(it.assets?.main?.js) {%>
+<script src="<%=it.assets?.main?.js%>" defer></script>
+<%}%>
+<% if(it.assets?.[it.page]?.js) {%>
+<script src="<%=it.assets?.[it.page]?.js%>" defer></script>
+<%}%>
