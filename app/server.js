@@ -22,10 +22,11 @@ server.on('error', err => {
   }
 });
 
-// handle shutdown server gracefully
+// handle server shutdown, gracefully
 const serverCloseHandler = exitCode => () => {
-  server.close();
-  process.exit(exitCode);
+  server.close(() => {
+    process.exit(exitCode);
+  });
 };
 
 process.on('uncaughtException', serverCloseHandler(1));
