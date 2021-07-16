@@ -1,4 +1,4 @@
-import logger from '../logger.js';
+import { logger } from '../../utils/index.js';
 
 // handling error from `createError` factory, by default
 // `500` status code will be used if `err.statusCode` is not available

@@ -1,6 +1,5 @@
 import morgan from 'morgan';
-import logger from '../logger.js';
-import { env } from '../../utils/index.js';
+import { env, logger } from '../../utils/index.js';
 
 // winston logger's "stream" writable for morgan
 logger.stream = {
