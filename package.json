@@ -11,7 +11,7 @@
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development npm run webpack",
     "lint:js": "eslint . --fix",
-    "lint:scss": "stylelint **/*.scss --fix --allow-empty-input",
+    "lint:scss": "stylelint **/*.{scss,sass} --fix --allow-empty-input",
     "lint": "npm-run-all lint:scss lint:js",
     "test": "cross-env NODE_ENV=test jest --passWithNoTests",
     "test:watch": "npm test -- --watch",
