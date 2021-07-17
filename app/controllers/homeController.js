@@ -1,5 +1,6 @@
 const homeProps = {
-  title: 'Home'
+  title: 'Home',
+  $asset: 'home'
 };
 
 // GET method for index action

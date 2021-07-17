@@ -4,6 +4,6 @@
 <% if(it.assets?.main?.js) {%>
 <script src="<%=it.assets?.main?.js%>" defer></script>
 <%}%>
-<% if(it.assets?.[it.page]?.js) {%>
-<script src="<%=it.assets?.[it.page]?.js%>" defer></script>
+<% if(it.assets?.[it.$asset]?.js) {%>
+<script src="<%=it.assets?.[it.$asset]?.js%>" defer></script>
 <%}%>

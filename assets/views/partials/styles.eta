@@ -4,6 +4,6 @@
 <% if(it.assets?.main?.css) {%>
 <link rel="stylesheet" href="<%=it.assets?.main?.css%>"/>
 <%}%>
-<% if(it.assets?.[it.page]?.css) {%>
-<link rel="stylesheet" href="<%=it.assets?.[it.page]?.css%>"/>
+<% if(it.assets?.[it.$asset]?.css) {%>
+<link rel="stylesheet" href="<%=it.assets?.[it.$asset]?.css%>"/>
 <%}%>
