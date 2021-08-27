@@ -20,22 +20,29 @@ const pathToBuild = `${paths.public}/build`;
 // populate respective module JS and SCSS files as entry points
 const getModuleEntry = () => {
   const entryFiles = {};
-  const excludeScriptFiles = [];
-  const excludeStyleFiles = [];
-  const targetDirectory = `${paths.assets}/scripts`;
 
-  fs.readdirSync(targetDirectory).filter(file => {
-    // check javascript file for pages, if any
+  // check javascript file for pages, if any
+  const scriptsDirectory = `${paths.assets}/scripts`;
+  const excludeScriptFiles = [];
+  fs.readdirSync(scriptsDirectory).filter(file => {
     const { name, ext } = path.parse(file);
     if (ext === '.js' && !excludeScriptFiles.includes(name)) {
       entryFiles[name] = [`${pathToScripts}/${file}`];
     }
+  });
 
-    // check if companion module has .scss file as well
-    // if there is, push as part of the module entry point
+  // check if companion module has .scss file as well
+  const stylesDirectory = `${paths.assets}/styles`;
+  const excludeStyleFiles = [];
+  fs.readdirSync(stylesDirectory).filter(file => {
+    const { name, ext } = path.parse(file);
     const moduleScss = `${pathToStyles}/${name}.scss`;
-    if (fs.existsSync(moduleScss) && !excludeStyleFiles.includes(name)) {
-      entryFiles[name].push(moduleScss);
+    if (ext === '.scss' && !excludeStyleFiles.includes(name)) {
+      if (Array.isArray(entryFiles[name])) {
+        entryFiles[name].push(moduleScss);
+      } else {
+        entryFiles[name] = [moduleScss];
+      }
     }
   });
 
