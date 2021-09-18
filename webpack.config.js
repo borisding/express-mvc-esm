@@ -51,6 +51,7 @@ const getModuleEntry = () => {
 
 const webpackConfig = {
   watch: isDev,
+  watchOptions: { poll: true, ignored: /node_modules/ },
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   resolve: {
