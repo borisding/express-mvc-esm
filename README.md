@@ -64,6 +64,43 @@ npm test
 | `.env.development` | development |         Yes          |
 | `.env`             | production  | No (Need to add new) |
 
+## Project Structure
+
+```
+├── app
+| ├── controllers                       # contains controller files
+| ├── index.js                          # app entry file
+| ├── middleware                        # contains express middleware files
+| ├── models                            # contains models
+| ├── routers                           # contains routers with mounted controller methods
+| └── server.js                         # express server
+├── assets
+| ├── jest                              # contains jest testing framework assets
+| ├── scripts                           # contains frontend script files
+| ├── styles                            # contains frontend style files
+| └── views                             # contains eta template files (layouts, pages partials)
+├── babel.config.cjs                    # babel configuration file
+├── config                              # contains environment variables
+├── env.loader.js                       # environment variables loader
+├── index.js                            # main entry file for bootstrapping
+├── jest.config.cjs                     # jest configuration file
+├── postcss.config.cjs                  # postcss configuration file
+├── prettier.config.cjs                 # prettier configuration file
+├── public                              # contains public assets and built files
+| ├── build                             # contains built script and style files
+| └── favicon.ico                       # favicon file
+├── storage                             # contains logs and/or other resources
+| └── logs
+├── stylelint.config.cjs                # stylelint configuration file
+├── tests                               # contains tests
+├── utils                               # contains util files
+| ├── env.js                            # util for environment related
+| ├── index.js                          # re-exported utils
+| ├── logger.js                         # app logger
+| └── paths.js                          # pre-defined project paths
+└── webpack.config.js                   # webpack configuration file
+```
+
 ## License
 
 MIT
