@@ -2,7 +2,7 @@ const prettierConfig = require('./prettier.config.cjs');
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
   plugins: ['prettier'],
   env: {
