@@ -19,10 +19,15 @@ app.locals.assets = assets;
 app.locals.isDev = env.isDev;
 
 // app view engine and directory config
-eta.configure({ cache: env.isProd });
+eta.configure({
+  views: `${paths.assets}/views`,
+  cache: !!env.isProd
+});
+
 app
   .engine('eta', eta.renderFile)
   .set('view engine', 'eta')
+  .set('view cache', !!env.isProd)
   .set('views', `${paths.assets}/views`);
 
 // app middleware
