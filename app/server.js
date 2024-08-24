@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import app from './index.js';
 
 // running express app server
-const PORT = parseInt(process.env.PORT, 10) || 5000;
+const PORT = parseInt(process.env.PORT, 10) || 8080;
 const server = app.listen(PORT, () => {
   console.log(chalk.cyan('App server is up, listening PORT:'), PORT);
 });
