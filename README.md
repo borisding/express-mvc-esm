@@ -75,7 +75,6 @@ npm test
 | ├── routers                           # contains routers with mounted controller methods
 | └── server.js                         # express server
 ├── assets
-| ├── jest                              # contains jest testing framework assets
 | ├── scripts                           # contains frontend script files
 | ├── styles                            # contains frontend style files
 | └── views                             # contains eta template files (layouts, pages partials)

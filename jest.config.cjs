@@ -11,12 +11,12 @@ module.exports = {
   ],
   moduleFileExtensions: ['js'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/assets/jest/fileMock.js',
-    '\\.(css|scss|sass)$': '<rootDir>/assets/jest/styleMock.js'
+    '\\.(css|scss|sass)$': 'identity-obj-proxy'
   },
   transform: {
-    '^.+\\.js$': '<rootDir>/node_modules/babel-jest'
+    '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      'jest-transform-stub'
   },
   testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.jsx?$',
   testPathIgnorePatterns: ['<rootDir>/node_modules/']
