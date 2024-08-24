@@ -5,7 +5,7 @@ import favicon from 'serve-favicon';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import csurf from 'csurf';
-import * as eta from 'eta';
+import { Eta } from 'eta';
 
 import * as middleware from './middleware/index.js';
 import * as routers from './routers/index.js';
@@ -19,16 +19,28 @@ app.locals.assets = assets;
 app.locals.isDev = env.isDev;
 
 // app view engine and directory config
-eta.configure({
+const eta = new Eta({
   views: `${paths.assets}/views`,
-  cache: !!env.isProd
+  cache: !!env.isProd,
+  debug: !!env.isDev
 });
 
+// build eta engine
+const buildEtaEngine = () => (path, opts, callback) => {
+  try {
+    const fileContent = eta.readFile(path);
+    const renderedTemplate = eta.renderString(fileContent, opts);
+    callback(null, renderedTemplate);
+  } catch (error) {
+    callback(error);
+  }
+};
+
 app
-  .engine('eta', eta.renderFile)
+  .engine('eta', buildEtaEngine())
   .set('view engine', 'eta')
   .set('view cache', !!env.isProd)
-  .set('views', `${paths.assets}/views`);
+  .set('views', eta.config.views);
 
 // app middleware
 app

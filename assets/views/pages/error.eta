@@ -1,4 +1,4 @@
-<% layout('../layouts/main') %>
+<% layout('layouts/main') %>
 
 <div class="notification is-danger">
   <h3>Something went wrong.</h3>
