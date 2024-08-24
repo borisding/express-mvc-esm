@@ -8,8 +8,8 @@ This project starter should be working as expected with the following minimal ve
 
 | Dependency |   Version   |
 | ---------- | :---------: |
-| Node       | >= v14.15.1 |
-| NPM        | >= v6.14.8  |
+| Node       | >= v20.17.0 |
+| NPM        | >= v10.8.2  |
 
 ## Quick Start
 
