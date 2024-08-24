@@ -1,6 +1,6 @@
-// make `csrfToken` accessible in view templates, conveniently
-const csrfToken = () => (req, res, next) => {
-  res.locals.csrfToken = req.csrfToken();
+// make `_csrfToken` accessible in view templates, conveniently
+const csrfToken = generateToken => (req, res, next) => {
+  res.locals._csrfToken = generateToken(req, res);
   next();
 };
 

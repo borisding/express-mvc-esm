@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="<%=it.csrfToken%>">
   <title><%=process.env.APP_NAME%> | <%=it.title%></title>
   <link rel="icon" type="image/png" href="/favicon.ico">
    <%~include('../partials/styles', it)%>

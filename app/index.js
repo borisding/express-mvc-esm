@@ -4,7 +4,7 @@ import hpp from 'hpp';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
-import csurf from 'csurf';
+import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
 import * as middleware from './middleware/index.js';
@@ -12,11 +12,17 @@ import * as routers from './routers/index.js';
 import assets from '../public/build/assets.js';
 import { env, paths } from '../utils/index.js';
 
-const app = express();
+const CSRF_SECRET = process.env.CSRF_SECRET;
+const COOKIE_SECRET = process.env.COOKIE_SECRET;
 
-// locals variable assignments for template usage
-app.locals.assets = assets;
-app.locals.isDev = env.isDev;
+// configuration for double csrf
+const { doubleCsrfProtection, generateToken } = doubleCsrf({
+  cookieName: 'x-csrf-token',
+  cookieOptions: { sameSite: 'lax', secure: !!env.isProd },
+  ignoredMethods: ['GET', 'HEAD', 'OPTIONS'],
+  getSecret: () => CSRF_SECRET,
+  getTokenFromRequest: req => req.body._csrfToken
+});
 
 // app view engine and directory config
 const eta = new Eta({
@@ -36,23 +42,30 @@ const buildEtaEngine = () => (path, opts, callback) => {
   }
 };
 
+const app = express();
+
+// locals variable assignments for template usage
+app.locals.assets = assets;
+app.locals.isDev = env.isDev;
+
 app
   .engine('eta', buildEtaEngine())
   .set('view engine', 'eta')
   .set('view cache', !!env.isProd)
   .set('views', eta.config.views);
 
-// app middleware
+// mount app middleware
 app
   .use(helmet())
   .use(middleware.httpLogger())
-  .use(cookieParser())
+  .use(cookieParser(COOKIE_SECRET))
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
   .use(express.static(paths.public))
   .use(favicon(`${paths.public}/favicon.ico`))
-  .use(csurf({ cookie: true }), middleware.csrfToken());
+  .use(middleware.csrfToken(generateToken))
+  .use(doubleCsrfProtection);
 
 // app routes
 app.use('/', routers.home);

@@ -48,7 +48,7 @@
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
-    "csurf": "^1.11.0",
+    "csrf-csrf": "^3.0.6",
     "dotenv": "^16.4.5",
     "dotenv-expand": "^11.0.6",
     "eta": "^3.5.0",
