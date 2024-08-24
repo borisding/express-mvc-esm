@@ -1,6 +1,6 @@
 {
   "name": "express-esm-mvc",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Node.js Express MVC boilerplate with ESM support.",
   "main": "index.js",
   "type": "module",
@@ -19,8 +19,8 @@
     "prepare": "husky"
   },
   "engines": {
-    "npm": ">=6.14.8",
-    "node": ">=14.15.1"
+    "npm": ">=10.8.2",
+    "node": ">=20.17.0"
   },
   "sideEffects": [
     "*.css",
