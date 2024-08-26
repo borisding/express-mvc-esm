@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#controllers/*": ["app/controllers/*"],
+      "#helpers/*": ["app/helpers/*"],
+      "#middleware/*": ["app/middleware/*"],
+      "#models/*": ["app/models/*"],
+      "#routers/*": ["app/routers/*"],
+      "#build/*": ["static/build/*"],
+      "#utils": ["utils/index.js"]
+    }
+  }
+}

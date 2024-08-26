@@ -7,16 +7,16 @@ import cookieParser from 'cookie-parser';
 import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
-import assets from '../static/build/assets.js';
-import { isProd, paths } from '../utils/index.js';
-import { buildEtaEngine } from './helpers/template.js';
+import assets from '#build/assets';
+import { isProd, paths } from '#utils';
+import { buildEtaEngine } from '#helpers/template';
 
-import { httpLogger } from './middleware/httpLogger.js';
-import { csrfToken } from './middleware/csrfToken.js';
-import { notFound } from './middleware/notFound.js';
-import { errorHandler } from './middleware/errorHandler.js';
+import { httpLogger } from '#middleware/httpLogger';
+import { csrfToken } from '#middleware/csrfToken';
+import { notFound } from '#middleware/notFound';
+import { errorHandler } from '#middleware/errorHandler';
 
-import { homeRouter } from './routers/home.js';
+import { homeRouter } from '#routers/home';
 
 const CSRF_SECRET = process.env.CSRF_SECRET;
 const COOKIE_SECRET = process.env.COOKIE_SECRET;

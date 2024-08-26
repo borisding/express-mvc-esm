@@ -43,6 +43,15 @@
   },
   "author": "Boris Ding Poh Hing",
   "license": "MIT",
+  "imports": {
+    "#controllers/*": "./app/controllers/*.js",
+    "#helpers/*": "./app/helpers/*.js",
+    "#middleware/*": "./app/middleware/*.js",
+    "#models/*": "./app/models/*.js",
+    "#routers/*": "./app/routers/*.js",
+    "#build/*": "./static/build/*.js",
+    "#utils": "./utils/index.js"
+  },
   "dependencies": {
     "chalk": "^5.3.0",
     "compression": "^1.7.4",

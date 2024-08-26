@@ -1,6 +1,6 @@
 import morgan from 'morgan';
-import { isDev } from '../../utils/index.js';
-import { logger } from '../helpers/logger.js';
+import { isDev } from '#utils';
+import { logger } from '#helpers/logger';
 
 // winston logger's "stream" writable for morgan
 logger.stream = {
