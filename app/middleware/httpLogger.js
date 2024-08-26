@@ -9,11 +9,9 @@ logger.stream = {
   }
 };
 
-const httpLogger = () => {
+export const httpLogger = () => {
   return morgan(env.isDev ? 'tiny' : 'combined', {
     stream: logger.stream,
     skip: (req, res) => res.statusCode < 400
   });
 };
-
-export default httpLogger;

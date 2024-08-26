@@ -8,10 +8,15 @@ import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
 import assets from '../public/build/assets.js';
-import * as middleware from './middleware/index.js';
-import { homeRouter } from './routers/home.js';
 import { env, paths } from '../utils/index.js';
 import { buildEtaEngine } from './helpers/template.js';
+
+import { httpLogger } from './middleware/httpLogger.js';
+import { csrfToken } from './middleware/csrfToken.js';
+import { notFound } from './middleware/notFound.js';
+import { errorHandler } from './middleware/errorHandler.js';
+
+import { homeRouter } from './routers/home.js';
 
 const CSRF_SECRET = process.env.CSRF_SECRET;
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
@@ -47,21 +52,21 @@ app
 // mount app middleware
 app
   .use(helmet())
-  .use(middleware.httpLogger())
+  .use(httpLogger())
   .use(cookieParser(COOKIE_SECRET))
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
   .use(express.static(paths.public))
   .use(favicon(`${paths.public}/favicon.ico`))
-  .use(middleware.csrfToken(generateToken))
+  .use(csrfToken(generateToken))
   .use(doubleCsrfProtection);
 
 // app routes
 app.use('/', homeRouter);
 
 // app error handlers
-app.use(middleware.notFound());
-app.use(middleware.errorHandler());
+app.use(notFound());
+app.use(errorHandler());
 
 export default app;
