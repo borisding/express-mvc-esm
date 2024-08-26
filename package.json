@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "clean": "rimraf public/build",
+    "clean": "rimraf static/build",
     "webpack": "npm run clean && webpack --progress",
     "build": "cross-env NODE_ENV=production npm run webpack",
     "start": "cross-env NODE_ENV=production node index.js",

@@ -14,7 +14,7 @@ const sourceMap = isProd;
 
 const pathToScripts = `${paths.assets}/scripts`;
 const pathToStyles = `${paths.assets}/styles`;
-const pathToBuild = `${paths.public}/build`;
+const pathToBuild = `${paths.static}/build`;
 
 // populate respective module JS and SCSS files as entry points
 const getModuleEntry = () => {

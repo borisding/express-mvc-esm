@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
-import assets from '../public/build/assets.js';
+import assets from '../static/build/assets.js';
 import { isProd, paths } from '../utils/index.js';
 import { buildEtaEngine } from './helpers/template.js';
 
@@ -57,8 +57,8 @@ app
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
-  .use(express.static(paths.public))
-  .use(favicon(`${paths.public}/favicon.ico`))
+  .use(express.static(paths.static))
+  .use(favicon(`${paths.static}/favicon.ico`))
   .use(csrfToken(generateToken))
   .use(doubleCsrfProtection);
 

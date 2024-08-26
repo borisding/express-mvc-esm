@@ -6,7 +6,7 @@ export const paths = {
   app: `${root}/app`,
   assets: `${root}/assets`,
   config: `${root}/config`,
-  public: `${root}/public`,
+  static: `${root}/static`,
   storage: `${root}/storage`,
   utils: `${root}/utils`
 };
