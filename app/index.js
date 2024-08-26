@@ -32,7 +32,7 @@ const { doubleCsrfProtection, generateToken } = doubleCsrf({
 
 // app view engine and directory config
 const eta = new Eta({
-  views: `${paths.assets}/views`,
+  views: `${paths.app}/views`,
   cache: !!isProd,
   debug: !isProd
 });
