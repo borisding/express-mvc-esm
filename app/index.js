@@ -16,7 +16,7 @@ import { csrfToken } from '#middleware/csrfToken';
 import { notFound } from '#middleware/notFound';
 import { errorHandler } from '#middleware/errorHandler';
 
-import { homeRouter } from '#routers/home';
+import { homeRouter } from '#routers/homeRouter';
 
 const CSRF_SECRET = process.env.CSRF_SECRET;
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
