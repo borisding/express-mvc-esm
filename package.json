@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf static/build",
-    "webpack": "npm run clean && webpack --progress",
-    "build": "cross-env NODE_ENV=production npm run webpack",
+    "webpack": "webpack --progress",
+    "build": "npm run clean && cross-env NODE_ENV=production npm run webpack",
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development npm run webpack",
     "lint:code": "eslint . --fix",
