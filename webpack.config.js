@@ -7,10 +7,9 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 
-import { env, paths } from './utils/index.js';
+import { paths, isDev, isProd } from './utils/index.js';
 import { getDefinedVars } from './env.loader.js';
 
-const { isDev, isProd } = env;
 const sourceMap = isProd;
 
 const pathToScripts = `${paths.assets}/scripts`;

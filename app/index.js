@@ -8,7 +8,7 @@ import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
 import assets from '../public/build/assets.js';
-import { env, paths } from '../utils/index.js';
+import { isProd, paths } from '../utils/index.js';
 import { buildEtaEngine } from './helpers/template.js';
 
 import { httpLogger } from './middleware/httpLogger.js';
@@ -24,7 +24,7 @@ const COOKIE_SECRET = process.env.COOKIE_SECRET;
 // configuration for double csrf
 const { doubleCsrfProtection, generateToken } = doubleCsrf({
   cookieName: 'x-csrf-token',
-  cookieOptions: { sameSite: 'lax', secure: !!env.isProd },
+  cookieOptions: { sameSite: 'lax', secure: !!isProd },
   ignoredMethods: ['GET', 'HEAD', 'OPTIONS'],
   getSecret: () => CSRF_SECRET,
   getTokenFromRequest: req => req.body._csrfToken
@@ -33,20 +33,20 @@ const { doubleCsrfProtection, generateToken } = doubleCsrf({
 // app view engine and directory config
 const eta = new Eta({
   views: `${paths.assets}/views`,
-  cache: !!env.isProd,
-  debug: !!env.isDev
+  cache: !!isProd,
+  debug: !isProd
 });
 
 const app = express();
 
 // locals variable assignments for template usage
 app.locals.assets = assets;
-app.locals.isDev = env.isDev;
+app.locals.isProd = isProd;
 
 app
   .engine('eta', buildEtaEngine(eta))
   .set('view engine', 'eta')
-  .set('view cache', !!env.isProd)
+  .set('view cache', !!isProd)
   .set('views', eta.config.views);
 
 // mount app middleware

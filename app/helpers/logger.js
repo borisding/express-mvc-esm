@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { env, paths } from '../../utils/index.js';
+import { isDev, paths } from '../../utils/index.js';
 
 const { format, transports, createLogger } = winston;
 const { combine, json, timestamp, label } = format;
@@ -24,7 +24,7 @@ export const logger = createLogger({
 });
 
 // add console only for development
-if (env.isDev) {
+if (isDev) {
   logger.add(
     new transports.Console({
       handleExceptions: true
