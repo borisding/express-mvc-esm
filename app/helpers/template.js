@@ -1,5 +1,5 @@
 // build eta template engine
-export const buildEtaEngine = eta => {
+export const buildTemplateEngine = eta => {
   return (path, opts, callback) => {
     try {
       const fileContent = eta.readFile(path);

@@ -9,7 +9,7 @@ import { Eta } from 'eta';
 
 import assets from '#build/assets';
 import { isProd, paths } from '#utils';
-import { buildEtaEngine } from '#helpers/template';
+import { buildTemplateEngine } from '#helpers/template';
 
 import { httpLogger } from '#middleware/httpLogger';
 import { csrfToken } from '#middleware/csrfToken';
@@ -44,7 +44,7 @@ app.locals.assets = assets;
 app.locals.isProd = isProd;
 
 app
-  .engine('eta', buildEtaEngine(eta))
+  .engine('eta', buildTemplateEngine(eta))
   .set('view engine', 'eta')
   .set('view cache', !!isProd)
   .set('views', eta.config.views);
