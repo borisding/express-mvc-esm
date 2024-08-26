@@ -11,6 +11,7 @@ import * as middleware from './middleware/index.js';
 import * as routers from './routers/index.js';
 import assets from '../public/build/assets.js';
 import { env, paths } from '../utils/index.js';
+import { buildEtaEngine } from './helpers/template.js';
 
 const CSRF_SECRET = process.env.CSRF_SECRET;
 const COOKIE_SECRET = process.env.COOKIE_SECRET;
@@ -31,17 +32,6 @@ const eta = new Eta({
   debug: !!env.isDev
 });
 
-// build eta engine
-const buildEtaEngine = () => (path, opts, callback) => {
-  try {
-    const fileContent = eta.readFile(path);
-    const renderedTemplate = eta.renderString(fileContent, opts);
-    callback(null, renderedTemplate);
-  } catch (error) {
-    callback(error);
-  }
-};
-
 const app = express();
 
 // locals variable assignments for template usage
@@ -49,7 +39,7 @@ app.locals.assets = assets;
 app.locals.isDev = env.isDev;
 
 app
-  .engine('eta', buildEtaEngine())
+  .engine('eta', buildEtaEngine(eta))
   .set('view engine', 'eta')
   .set('view cache', !!env.isProd)
   .set('views', eta.config.views);

@@ -1,10 +1,10 @@
 import winston from 'winston';
-import { env, paths } from '../utils/index.js';
+import { env, paths } from '../../utils/index.js';
 
 const { format, transports, createLogger } = winston;
 const { combine, json, timestamp, label } = format;
 
-const logger = createLogger({
+export const logger = createLogger({
   exitOnError: false,
   transports: [
     new transports.File({
@@ -31,5 +31,3 @@ if (env.isDev) {
     })
   );
 }
-
-export default logger;
