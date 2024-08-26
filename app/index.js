@@ -7,9 +7,9 @@ import cookieParser from 'cookie-parser';
 import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
-import * as middleware from './middleware/index.js';
-import * as routers from './routers/index.js';
 import assets from '../public/build/assets.js';
+import * as middleware from './middleware/index.js';
+import { homeRouter } from './routers/home.js';
 import { env, paths } from '../utils/index.js';
 import { buildEtaEngine } from './helpers/template.js';
 
@@ -58,7 +58,7 @@ app
   .use(doubleCsrfProtection);
 
 // app routes
-app.use('/', routers.home);
+app.use('/', homeRouter);
 
 // app error handlers
 app.use(middleware.notFound());
