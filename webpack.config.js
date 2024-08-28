@@ -33,15 +33,16 @@ class WatchAssetFilesPlugin {
         }
       });
 
-      // check if companion module has .scss file as well
+      // check if companion module has .s?css file as well
+      const styleExtensions = ['.scss', '.css'];
       fs.readdirSync(pathToStyles).forEach(file => {
         const { name, ext } = path.parse(file);
-        const moduleScss = `${pathToStyles}/${name}.scss`;
-        if (ext === '.scss' && !excludeStyles.includes(name)) {
+        const moduleStyle = `${pathToStyles}/${name}${ext}`;
+        if (styleExtensions.includes(ext) && !excludeStyles.includes(name)) {
           if (Array.isArray(entryFiles[name])) {
-            entryFiles[name].push(moduleScss);
+            entryFiles[name].push(moduleStyle);
           } else {
-            entryFiles[name] = [moduleScss];
+            entryFiles[name] = [moduleStyle];
           }
         }
       });
