@@ -6,6 +6,7 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
+import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
 import { paths, isDev, isProd } from './utils/index.js';
 import { getDefinedVars } from './env.loader.js';
 
@@ -147,6 +148,7 @@ const webpackConfig = {
   plugins: [
     new webpack.DefinePlugin(getDefinedVars().stringified),
     new WatchAssetFilesPlugin(),
+    new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
       chunkFilename: isDev ? '[id].css' : '[id].chunk.[contenthash:8].css'
