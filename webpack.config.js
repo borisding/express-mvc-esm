@@ -6,7 +6,6 @@ import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
-
 import { paths, isDev, isProd } from './utils/index.js';
 import { getDefinedVars } from './env.loader.js';
 
@@ -15,38 +14,56 @@ const sourceMap = isProd;
 const pathToScripts = `${paths.assets}/scripts`;
 const pathToStyles = `${paths.assets}/styles`;
 const pathToBuild = `${paths.static}/build`;
+const watchedDirectories = [pathToScripts, pathToStyles];
 
-// populate respective module JS and SCSS files as entry points
-const getModuleEntry = () => {
-  const entryFiles = {};
+class WatchAssetFilesPlugin {
+  static getEntries() {
+    return function () {
+      const entryFiles = {};
 
-  // check javascript file for pages, if any
-  const scriptsDirectory = `${paths.assets}/scripts`;
-  const excludeScriptFiles = [];
-  fs.readdirSync(scriptsDirectory).filter(file => {
-    const { name, ext } = path.parse(file);
-    if (ext === '.js' && !excludeScriptFiles.includes(name)) {
-      entryFiles[name] = [`${pathToScripts}/${file}`];
+      // list files to exclude, if any
+      const excludeScripts = [];
+      const excludeStyles = [];
+
+      // check javascript file for pages
+      fs.readdirSync(pathToScripts).forEach(file => {
+        const { name, ext } = path.parse(file);
+        if (ext === '.js' && !excludeScripts.includes(name)) {
+          entryFiles[name] = [`${pathToScripts}/${file}`];
+        }
+      });
+
+      // check if companion module has .scss file as well
+      fs.readdirSync(pathToStyles).forEach(file => {
+        const { name, ext } = path.parse(file);
+        const moduleScss = `${pathToStyles}/${name}.scss`;
+        if (ext === '.scss' && !excludeStyles.includes(name)) {
+          if (Array.isArray(entryFiles[name])) {
+            entryFiles[name].push(moduleScss);
+          } else {
+            entryFiles[name] = [moduleScss];
+          }
+        }
+      });
+
+      return entryFiles;
+    };
+  }
+
+  apply(compiler) {
+    compiler.hooks.afterCompile.tapAsync(
+      this.constructor.name,
+      this.afterCompile.bind(this)
+    );
+  }
+
+  afterCompile(compilation, callback) {
+    for (const directory of watchedDirectories) {
+      compilation.contextDependencies.add(path.normalize(directory));
     }
-  });
-
-  // check if companion module has .scss file as well
-  const stylesDirectory = `${paths.assets}/styles`;
-  const excludeStyleFiles = [];
-  fs.readdirSync(stylesDirectory).filter(file => {
-    const { name, ext } = path.parse(file);
-    const moduleScss = `${pathToStyles}/${name}.scss`;
-    if (ext === '.scss' && !excludeStyleFiles.includes(name)) {
-      if (Array.isArray(entryFiles[name])) {
-        entryFiles[name].push(moduleScss);
-      } else {
-        entryFiles[name] = [moduleScss];
-      }
-    }
-  });
-
-  return entryFiles;
-};
+    callback();
+  }
+}
 
 const webpackConfig = {
   watch: isDev,
@@ -56,15 +73,12 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss']
   },
-  entry: {
-    main: `${pathToStyles}/main.scss`,
-    ...getModuleEntry()
-  },
+  entry: WatchAssetFilesPlugin.getEntries(),
   output: {
     publicPath: process.env.PUBLIC_PATH || '/',
     path: pathToBuild,
-    filename: isDev ? '[name].js' : '[id].[contenthash:8].js',
-    chunkFilename: isDev ? '[name].chunk.js' : '[id].chunk.[contenthash:8].js'
+    filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
+    chunkFilename: isDev ? '[name].chunk.js' : '[name].chunk.[contenthash:8].js'
   },
   optimization: {
     // @see: https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
@@ -131,6 +145,7 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.DefinePlugin(getDefinedVars().stringified),
+    new WatchAssetFilesPlugin(),
     new MiniCssExtractPlugin({
       filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
       chunkFilename: isDev ? '[id].css' : '[id].chunk.[contenthash:8].css'
