@@ -10,8 +10,6 @@ import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
 import { paths, isDev, isProd } from './utils/index.js';
 import { getDefinedVars } from './env.loader.js';
 
-const sourceMap = isProd;
-
 const pathToScripts = `${paths.assets}/scripts`;
 const pathToStyles = `${paths.assets}/styles`;
 const pathToBuild = `${paths.static}/build`;
@@ -35,7 +33,7 @@ class WatchAssetFilesPlugin {
       });
 
       // check if companion module has .s?css file as well
-      const styleExtensions = ['.scss', '.css'];
+      const styleExtensions = ['.scss', '.sass', '.css'];
       fs.readdirSync(pathToStyles).forEach(file => {
         const { name, ext } = path.parse(file);
         const moduleStyle = `${pathToStyles}/${name}${ext}`;
@@ -73,7 +71,7 @@ const webpackConfig = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css', '.scss']
+    extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.sass']
   },
   entry: WatchAssetFilesPlugin.getEntries(),
   output: {
@@ -117,15 +115,22 @@ const webpackConfig = {
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: { importLoaders: 2, sourceMap }
+            options: {
+              importLoaders: 2,
+              sourceMap: !!isProd
+            }
           },
           {
             loader: 'postcss-loader',
-            options: { sourceMap }
+            options: {
+              sourceMap: !!isProd
+            }
           },
           {
             loader: 'sass-loader',
-            options: { sourceMap }
+            options: {
+              sourceMap: !!isProd
+            }
           }
         ]
       },
