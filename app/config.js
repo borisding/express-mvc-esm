@@ -25,7 +25,7 @@ globalThis.syspath = {
   root,
   app: `${root}/app`,
   assets: `${root}/assets`,
-  static: `${root}/static`,
+  public: `${root}/public`,
   storage: `${root}/storage`
 };
 

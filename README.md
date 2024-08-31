@@ -78,7 +78,7 @@ cp .env.example .env
 ├── jsconfig.json                       # editor config file, to align with aliases
 ├── postcss.config.cjs                  # postcss configuration file
 ├── prettier.config.cjs                 # prettier configuration file
-├── static                              # contains static files, include built files
+├── public                              # contains static files, include built files
 | ├── build                             # contains built script and style files
 | └── favicon.ico                       # favicon file
 ├── storage                             # contains logs and/or other resources

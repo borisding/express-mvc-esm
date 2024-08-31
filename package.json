@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "clean": "rimraf static/build",
+    "clean": "rimraf public/build",
     "webpack": "npm run clean && webpack --progress",
     "build": "cross-env NODE_ENV=production npm run webpack",
     "start": "cross-env NODE_ENV=production node index.js",
@@ -50,7 +50,7 @@
     "#middleware/*": "./app/middleware/*.js",
     "#models/*": "./app/models/*.js",
     "#routers/*": "./app/routers/*.js",
-    "#build/*": "./static/build/*.js"
+    "#build/*": "./public/build/*.js"
   },
   "dependencies": {
     "chalk": "^5.3.0",

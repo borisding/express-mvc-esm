@@ -54,8 +54,8 @@ app
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
-  .use(express.static(syspath.static))
-  .use(favicon(`${syspath.static}/favicon.ico`))
+  .use(express.static(syspath.public))
+  .use(favicon(`${syspath.public}/favicon.ico`))
   .use(csrfToken(generateToken))
   .use(doubleCsrfProtection);
 

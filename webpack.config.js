@@ -11,7 +11,7 @@ import { getDefinedDotEnv } from '#config';
 
 const pathToScripts = `${syspath.assets}/scripts`;
 const pathToStyles = `${syspath.assets}/styles`;
-const pathToBuild = `${syspath.static}/build`;
+const pathToBuild = `${syspath.public}/build`;
 const watchedDirectories = [pathToScripts, pathToStyles];
 
 class WatchAssetFilesPlugin {
