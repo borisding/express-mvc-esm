@@ -44,13 +44,13 @@
   "author": "Boris Ding Poh Hing",
   "license": "MIT",
   "imports": {
+    "#config": "./app/config.js",
     "#controllers/*": "./app/controllers/*.js",
     "#helpers/*": "./app/helpers/*.js",
     "#middleware/*": "./app/middleware/*.js",
     "#models/*": "./app/models/*.js",
     "#routers/*": "./app/routers/*.js",
-    "#build/*": "./static/build/*.js",
-    "#utils": "./utils/index.js"
+    "#build/*": "./static/build/*.js"
   },
   "dependencies": {
     "chalk": "^5.3.0",

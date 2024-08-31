@@ -72,14 +72,13 @@ cp .env.example .env
 | ├── models                            # contains models
 | ├── routers                           # contains routers with mounted controller methods
 | ├── views                             # contains eta template files (layouts, pages partials)
+| ├── config.js                         # app configuration file
 | ├── index.js                          # app entry file
 | └── server.js                         # express server
 ├── assets
 | ├── scripts                           # contains frontend script files
 | ├── styles                            # contains frontend style files
 ├── babel.config.cjs                    # babel configuration file
-├── config                              # contains environment variables
-├── env.loader.js                       # environment variables loader
 ├── index.js                            # main entry file for bootstrapping
 ├── jest.config.cjs                     # jest configuration file
 ├── jsconfig.json                       # editor config file, to align with aliases
@@ -92,7 +91,6 @@ cp .env.example .env
 | └── logs
 ├── stylelint.config.cjs                # stylelint configuration file
 ├── tests                               # contains tests
-├── utils                               # contains util files
 | ├── index.js                          # utils index file
 └── webpack.config.js                   # webpack configuration file
 ```

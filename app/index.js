@@ -8,7 +8,7 @@ import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
 import assets from '#build/assets';
-import { isProd, paths } from '#utils';
+import { isProd, paths } from '#config';
 import { buildTemplateEngine } from '#helpers/template';
 
 import { httpLogger } from '#middleware/httpLogger';

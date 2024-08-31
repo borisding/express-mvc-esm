@@ -2,13 +2,13 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "#config": ["app/config.js"],
       "#controllers/*": ["app/controllers/*"],
       "#helpers/*": ["app/helpers/*"],
       "#middleware/*": ["app/middleware/*"],
       "#models/*": ["app/models/*"],
       "#routers/*": ["app/routers/*"],
-      "#build/*": ["static/build/*"],
-      "#utils/*": ["utils/*.js"]
+      "#build/*": ["static/build/*"]
     }
   }
 }

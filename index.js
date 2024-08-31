@@ -1,2 +1,2 @@
-import './utils/config.js';
+import './app/config.js';
 import './app/server.js';

@@ -7,8 +7,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
-import { paths, isDev, isProd } from './utils/index.js';
-import { getDefinedVars } from './utils/config.js';
+import { paths, isDev, isProd, getDefinedVars } from '#config';
 
 const pathToScripts = `${paths.assets}/scripts`;
 const pathToStyles = `${paths.assets}/styles`;
@@ -175,7 +174,7 @@ if (isDev) {
       verbose: false,
       script: `${paths.root}/index.js`,
       ignore: ['node_modules', paths.storage, paths.assets],
-      watch: [paths.app, paths.utils]
+      watch: [paths.app]
     })
   ];
 }

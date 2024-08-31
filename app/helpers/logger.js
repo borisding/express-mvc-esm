@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { isDev, paths } from '#utils';
+import { isDev, paths } from '#config';
 
 const { format, transports, createLogger } = winston;
 const { combine, json, timestamp, label } = format;
