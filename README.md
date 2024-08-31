@@ -23,6 +23,14 @@ git clone --depth=1 https://github.com/borisding/express-mvc-esm.git my-project
 cd my-project && npm install
 ```
 
+## Environment variables
+
+Copy `.env.example` template into `.env` file. Please do not commit .env to the git repo.
+
+```bash
+cp .env.example .env
+```
+
 2. Running application by executing one of the following scripts:
 
 **Development**
@@ -44,14 +52,6 @@ To run tests:
 
 ```bash
 npm test
-```
-
-## Environment variables
-
-Copy `.env.example` template into `.env` file. Please do not commit .env to the git repo.
-
-```bash
-cp .env.example .env
 ```
 
 ## Project Structure
