@@ -8,8 +8,13 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    es6: true,
+    es2020: true,
     jest: true
+  },
+  globals: {
+    isDev: 'readonly',
+    isProd: 'readonly',
+    syspath: 'readonly'
   },
   parserOptions: {
     sourceType: 'module'

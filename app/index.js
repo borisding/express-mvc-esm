@@ -8,9 +8,7 @@ import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
 import assets from '#build/assets';
-import { isProd, paths } from '#config';
 import { buildTemplateEngine } from '#helpers/template';
-
 import { httpLogger } from '#middleware/httpLogger';
 import { csrfToken } from '#middleware/csrfToken';
 import { notFound } from '#middleware/notFound';
@@ -32,7 +30,7 @@ const { doubleCsrfProtection, generateToken } = doubleCsrf({
 
 // app view engine and directory config
 const eta = new Eta({
-  views: `${paths.app}/views`,
+  views: `${syspath.app}/views`,
   cache: !!isProd,
   debug: !isProd
 });
@@ -41,7 +39,6 @@ const app = express();
 
 // locals variable assignments for template usage
 app.locals.assets = assets;
-app.locals.isProd = isProd;
 
 app
   .engine('eta', buildTemplateEngine(eta))
@@ -57,8 +54,8 @@ app
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
-  .use(express.static(paths.static))
-  .use(favicon(`${paths.static}/favicon.ico`))
+  .use(express.static(syspath.static))
+  .use(favicon(`${syspath.static}/favicon.ico`))
   .use(csrfToken(generateToken))
   .use(doubleCsrfProtection);
 

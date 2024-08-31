@@ -7,11 +7,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
-import { paths, isDev, isProd, getDefinedVars } from '#config';
+import { getDefinedDotEnv } from '#config';
 
-const pathToScripts = `${paths.assets}/scripts`;
-const pathToStyles = `${paths.assets}/styles`;
-const pathToBuild = `${paths.static}/build`;
+const pathToScripts = `${syspath.assets}/scripts`;
+const pathToStyles = `${syspath.assets}/styles`;
+const pathToBuild = `${syspath.static}/build`;
 const watchedDirectories = [pathToScripts, pathToStyles];
 
 class WatchAssetFilesPlugin {
@@ -150,7 +150,7 @@ const webpackConfig = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin(getDefinedVars().stringified),
+    new webpack.DefinePlugin(getDefinedDotEnv().stringified),
     new WatchAssetFilesPlugin(),
     new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
@@ -172,9 +172,9 @@ if (isDev) {
     new NodemonPlugin({
       ext: 'js',
       verbose: false,
-      script: `${paths.root}/index.js`,
-      ignore: ['node_modules', paths.storage, paths.assets],
-      watch: [paths.app]
+      script: `${syspath.root}/index.js`,
+      ignore: ['node_modules', syspath.storage, syspath.assets],
+      watch: [syspath.app]
     })
   ];
 }
