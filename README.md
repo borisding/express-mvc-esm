@@ -70,6 +70,8 @@ cp .env.example .env
 ├── assets
 | ├── scripts                           # contains frontend script files
 | ├── styles                            # contains frontend style files
+├── .env.example                        # .env template file
+├── .eslintrc.cjs                       # eslint configuration file
 ├── babel.config.cjs                    # babel configuration file
 ├── index.js                            # main entry file for bootstrapping
 ├── jest.config.cjs                     # jest configuration file
