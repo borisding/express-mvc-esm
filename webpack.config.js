@@ -8,7 +8,7 @@ import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
 import { paths, isDev, isProd } from './utils/index.js';
-import { getDefinedVars } from './env.loader.js';
+import { getDefinedVars } from './utils/config.js';
 
 const pathToScripts = `${paths.assets}/scripts`;
 const pathToStyles = `${paths.assets}/styles`;

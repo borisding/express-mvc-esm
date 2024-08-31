@@ -1,2 +1,2 @@
-import './env.loader.js';
+import './utils/config.js';
 import './app/server.js';

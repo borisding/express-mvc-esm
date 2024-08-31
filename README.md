@@ -54,15 +54,13 @@ To run tests:
 npm test
 ```
 
-## Configuration
+## Environment variables
 
-- `dotenv` and `dotenv-expand` packages are used in conjunction with `webpack.DefinePlugin` plugin for managing environment variables. The entire logic can be found in `./env.loader.js` file. The .env is environment sepecific and is loaded based on the defined `process.env.NODE_ENV` value:
+Copy `.env.example` template into `.env` file. Please do not commit .env to the git repo.
 
-| File name          | NODE_ENV    |  In Source Control   |
-| ------------------ | ----------- | :------------------: |
-| `.env.test`        | test        |         Yes          |
-| `.env.development` | development |         Yes          |
-| `.env`             | production  | No (Need to add new) |
+```bash
+cp .env.example .env
+```
 
 ## Project Structure
 

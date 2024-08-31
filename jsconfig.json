@@ -8,7 +8,7 @@
       "#models/*": ["app/models/*"],
       "#routers/*": ["app/routers/*"],
       "#build/*": ["static/build/*"],
-      "#utils": ["utils/index.js"]
+      "#utils/*": ["utils/*.js"]
     }
   }
 }
