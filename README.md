@@ -33,14 +33,6 @@ npm run dev
 
 **Production**
 
-Copy `.env.development` to `./config` folder as `.env` for production usage:
-
-```bash
-cp config/.env.development config/.env
-```
-
-Change environment variables in `.env` to serve your app. Avoid using the same port for both development and production.
-
 ```bash
 # build for production ready and start server
 npm run build && npm start
