@@ -64,7 +64,6 @@ npm test
 | ├── middleware                        # contains express middleware files
 | ├── models                            # contains models
 | ├── routers                           # contains routers with mounted controller methods
-| ├── views                             # contains eta template files (layouts, pages partials)
 | ├── app.js                            # express app file
 | └── bootstrap.js                      # bootstrap file to start app
 | ├── config.js                         # app configuration file
