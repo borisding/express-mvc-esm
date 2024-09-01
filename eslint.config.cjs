@@ -23,6 +23,6 @@ module.exports = [
       'no-global-assign': 'off',
       'prettier/prettier': ['error', prettierConfig]
     },
-    ignores: ['build', 'coverage', 'node_modules']
+    ignores: ['build/**/*', 'coverage/**/*']
   }
 ];
