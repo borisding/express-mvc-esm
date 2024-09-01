@@ -69,7 +69,7 @@ npm test
 | └── bootstrap.js                      # bootstrap file to start app
 | ├── config.js                         # app configuration file
 ├── .env.example                        # .env template file
-├── .eslintrc.cjs                       # eslint configuration file
+├── eslint.config.cjs                   # eslint configuration file
 ├── babel.config.cjs                    # babel configuration file
 ├── jest.config.cjs                     # jest configuration file
 ├── jsconfig.json                       # editor config file, to align with aliases

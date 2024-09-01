@@ -1,10 +1,10 @@
-import js from '@eslint/js';
-import globals from 'globals';
-import babelParser from '@babel/eslint-parser';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import prettierConfig from './prettier.config.js';
+const js = require('@eslint/js');
+const globals = require('globals');
+const babelParser = require('@babel/eslint-parser');
+const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
+const prettierConfig = require('./prettier.config.cjs');
 
-export default [
+module.exports = [
   js.configs.recommended,
   eslintPluginPrettierRecommended,
   {
@@ -23,6 +23,6 @@ export default [
       'no-global-assign': 'off',
       'prettier/prettier': ['error', prettierConfig]
     },
-    ignores: ['build', 'coverage']
+    ignores: ['build', 'coverage', 'node_modules']
   }
 ];
