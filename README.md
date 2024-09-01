@@ -58,6 +58,7 @@ npm test
 
 ```
 ├── app
+| ├── assets                            # contains asset files (scripts, styles, views)
 | ├── controllers                       # contains controller files
 | ├── helpers                           # contains app helpers files
 | ├── middleware                        # contains express middleware files
