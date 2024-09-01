@@ -1,5 +1,5 @@
-import fs from 'fs';
 import path from 'path';
+import { glob } from 'glob';
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
@@ -19,31 +19,32 @@ class WatchAssetFilesPlugin {
     return function () {
       const entryFiles = {};
 
-      // list files to exclude, if any
-      const excludeScripts = [];
-      const excludeStyles = [];
+      glob
+        .sync(
+          [`${pathToScripts}/**/*.js`, `${pathToStyles}/**/*.{scss,sass,css}`],
+          { ignore: 'node_modules/**' }
+        )
+        .forEach(file => {
+          const { ext } = path.parse(file);
+          const resolvedFile = path.resolve(file);
 
-      // check javascript file for pages
-      fs.readdirSync(pathToScripts).forEach(file => {
-        const { name, ext } = path.parse(file);
-        if (ext === '.js' && !excludeScripts.includes(name)) {
-          entryFiles[name] = [`${pathToScripts}/${file}`];
-        }
-      });
+          let fileKey = resolvedFile
+            .replace(ext, '')
+            .replace(path.resolve(pathToScripts), '')
+            .replace(path.resolve(pathToStyles), '');
 
-      // check if companion module has .s?css file as well
-      const styleExtensions = ['.scss', '.sass', '.css'];
-      fs.readdirSync(pathToStyles).forEach(file => {
-        const { name, ext } = path.parse(file);
-        const moduleStyle = `${pathToStyles}/${name}${ext}`;
-        if (styleExtensions.includes(ext) && !excludeStyles.includes(name)) {
-          if (Array.isArray(entryFiles[name])) {
-            entryFiles[name].push(moduleStyle);
-          } else {
-            entryFiles[name] = [moduleStyle];
+          if (fileKey[0] === path.sep) {
+            fileKey = fileKey.substring(1, fileKey.length);
           }
-        }
-      });
+
+          fileKey = fileKey.replaceAll('\\', '/');
+
+          if (Array.isArray(entryFiles[fileKey])) {
+            entryFiles[fileKey].push(resolvedFile);
+          } else {
+            entryFiles[fileKey] = [resolvedFile];
+          }
+        });
 
       return entryFiles;
     };
