@@ -22,7 +22,7 @@ const COOKIE_SECRET = process.env.COOKIE_SECRET;
 // configuration for double csrf
 const { doubleCsrfProtection, generateToken } = doubleCsrf({
   cookieName: 'x-csrf-token',
-  cookieOptions: { sameSite: 'lax', secure: !!isProd },
+  cookieOptions: { sameSite: 'lax', secure: !!$env.isProd },
   ignoredMethods: ['GET', 'HEAD', 'OPTIONS'],
   getSecret: () => CSRF_SECRET,
   getTokenFromRequest: req => req.body._csrfToken
@@ -30,9 +30,9 @@ const { doubleCsrfProtection, generateToken } = doubleCsrf({
 
 // app view engine and directory config
 const eta = new Eta({
-  views: `${syspath.app}/views`,
-  cache: !!isProd,
-  debug: !isProd
+  views: `${$path.app}/views`,
+  cache: !!$env.isProd,
+  debug: !$env.isProd
 });
 
 const app = express();
@@ -43,7 +43,7 @@ app.locals.assets = assets;
 app
   .engine('eta', buildTemplateEngine(eta))
   .set('view engine', 'eta')
-  .set('view cache', !!isProd)
+  .set('view cache', !!$env.isProd)
   .set('views', eta.config.views);
 
 // mount app middleware
@@ -54,8 +54,8 @@ app
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
-  .use(express.static(syspath.public))
-  .use(favicon(`${syspath.public}/favicon.ico`))
+  .use(express.static($path.public))
+  .use(favicon(`${$path.public}/favicon.ico`))
   .use(csrfToken(generateToken))
   .use(doubleCsrfProtection);
 

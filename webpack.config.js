@@ -9,9 +9,9 @@ import NodemonPlugin from 'nodemon-webpack-plugin';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
 import { getDefinedDotEnv } from '#config';
 
-const pathToScripts = `${syspath.assets}/scripts`;
-const pathToStyles = `${syspath.assets}/styles`;
-const pathToBuild = `${syspath.public}/build`;
+const pathToScripts = `${$path.assets}/scripts`;
+const pathToStyles = `${$path.assets}/styles`;
+const pathToBuild = `${$path.public}/build`;
 const watchedDirectories = [pathToScripts, pathToStyles];
 
 class WatchAssetFilesPlugin {
@@ -65,10 +65,10 @@ class WatchAssetFilesPlugin {
 }
 
 const webpackConfig = {
-  watch: isDev,
+  watch: $env.isDev,
   watchOptions: { poll: true, ignored: /node_modules/ },
-  mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'cheap-module-source-map' : 'source-map',
+  mode: $env.isDev ? 'development' : 'production',
+  devtool: $env.isDev ? 'cheap-module-source-map' : 'source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.sass']
   },
@@ -76,8 +76,10 @@ const webpackConfig = {
   output: {
     publicPath: process.env.PUBLIC_PATH || '/',
     path: pathToBuild,
-    filename: isDev ? '[name].js' : '[name].[contenthash:8].js',
-    chunkFilename: isDev ? '[name].chunk.js' : '[name].chunk.[contenthash:8].js'
+    filename: $env.isDev ? '[name].js' : '[name].[contenthash:8].js',
+    chunkFilename: $env.isDev
+      ? '[name].chunk.js'
+      : '[name].chunk.[contenthash:8].js'
   },
   optimization: {
     // @see: https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
@@ -102,7 +104,7 @@ const webpackConfig = {
         use: {
           loader: 'babel-loader',
           options: {
-            cacheDirectory: !!isDev,
+            cacheDirectory: !!$env.isDev,
             configFile: true
           }
         }
@@ -116,19 +118,19 @@ const webpackConfig = {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              sourceMap: !!isProd
+              sourceMap: $env.isProd
             }
           },
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: !!isProd
+              sourceMap: $env.isProd
             }
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: !!isProd
+              sourceMap: $env.isProd
             }
           }
         ]
@@ -154,27 +156,27 @@ const webpackConfig = {
     new WatchAssetFilesPlugin(),
     new RemoveEmptyScriptsPlugin(),
     new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
-      chunkFilename: isDev ? '[id].css' : '[id].chunk.[contenthash:8].css'
+      filename: $env.isDev ? '[name].css' : '[name].[contenthash:8].css',
+      chunkFilename: $env.isDev ? '[id].css' : '[id].chunk.[contenthash:8].css'
     }),
     new AssetsPlugin({
       filename: 'assets.js',
-      prettyPrint: isDev,
+      prettyPrint: $env.isDev,
       path: pathToBuild,
       processOutput: assets => `export default ${JSON.stringify(assets)}`
     })
   ]
 };
 
-if (isDev) {
+if ($env.isDev) {
   webpackConfig.plugins = [
     ...webpackConfig.plugins,
     new NodemonPlugin({
       ext: 'js',
       verbose: false,
-      script: `${syspath.root}/index.js`,
-      ignore: ['node_modules', syspath.storage, syspath.assets],
-      watch: [syspath.app]
+      script: `${$path.root}/index.js`,
+      ignore: ['node_modules', $path.storage, $path.assets],
+      watch: [$path.app]
     })
   ];
 }

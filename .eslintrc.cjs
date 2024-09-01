@@ -12,9 +12,8 @@ module.exports = {
     jest: true
   },
   globals: {
-    isDev: 'readonly',
-    isProd: 'readonly',
-    syspath: 'readonly'
+    $env: 'readonly',
+    $path: 'readonly'
   },
   parserOptions: {
     sourceType: 'module'

@@ -8,11 +8,11 @@ export const logger = createLogger({
   transports: [
     new transports.File({
       level: 'info',
-      filename: `${syspath.storage}/logs/access.log`
+      filename: `${$path.storage}/logs/access.log`
     }),
     new transports.File({
       level: 'error',
-      filename: `${syspath.storage}/logs/errors.log`,
+      filename: `${$path.storage}/logs/errors.log`,
       format: combine(
         label({ label: 'ERROR STACK:' }),
         timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
@@ -23,7 +23,7 @@ export const logger = createLogger({
 });
 
 // add console only for development
-if (isDev) {
+if ($env.isDev) {
   logger.add(
     new transports.Console({
       handleExceptions: true

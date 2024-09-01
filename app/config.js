@@ -21,7 +21,7 @@ export const getDefinedDotEnv = () => {
 const root = path.resolve(process.cwd());
 
 // global variables definition
-globalThis.syspath = {
+globalThis.$path = {
   root,
   app: `${root}/app`,
   assets: `${root}/assets`,
@@ -29,5 +29,7 @@ globalThis.syspath = {
   storage: `${root}/storage`
 };
 
-globalThis.isDev = process.env.NODE_ENV === 'development';
-globalThis.isProd = process.env.NODE_ENV === 'production';
+globalThis.$env = {
+  isDev: process.env.NODE_ENV === 'development',
+  isProd: process.env.NODE_ENV === 'production'
+};
