@@ -66,17 +66,17 @@ npm test
 | ├── routers                           # contains routers with mounted controller methods
 | ├── views                             # contains eta template files (layouts, pages partials)
 | ├── config.js                         # app configuration file
-| ├── index.js                          # app entry file
-| └── server.js                         # express server
+| ├── app.js                            # express app entry file
+| └── start.js                          # express server to run app
 ├── assets
 | ├── scripts                           # contains frontend script files
 | ├── styles                            # contains frontend style files
 ├── .env.example                        # .env template file
 ├── .eslintrc.cjs                       # eslint configuration file
 ├── babel.config.cjs                    # babel configuration file
-├── index.js                            # main entry file for bootstrapping
 ├── jest.config.cjs                     # jest configuration file
 ├── jsconfig.json                       # editor config file, to align with aliases
+├── main.js                             # main entry file for bootstrapping
 ├── postcss.config.cjs                  # postcss configuration file
 ├── prettier.config.cjs                 # prettier configuration file
 ├── public                              # contains static files, include built files
@@ -86,7 +86,6 @@ npm test
 | └── logs
 ├── stylelint.config.cjs                # stylelint configuration file
 ├── tests                               # contains tests
-| ├── index.js                          # utils index file
 └── webpack.config.js                   # webpack configuration file
 ```
 

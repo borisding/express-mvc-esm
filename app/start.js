@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import app from './index.js';
+import app from './app.js';
 
 // running express app server
 const PORT = parseInt(process.env.PORT, 10) || 8080;

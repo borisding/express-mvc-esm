@@ -174,7 +174,7 @@ if ($env.isDev) {
     new NodemonPlugin({
       ext: 'js',
       verbose: false,
-      script: `${$path.root}/index.js`,
+      script: `${$path.root}/main.js`,
       ignore: ['node_modules', $path.storage, $path.assets],
       watch: [$path.app]
     })
