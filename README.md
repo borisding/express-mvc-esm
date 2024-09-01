@@ -69,6 +69,9 @@ npm test
 | └── bootstrap.js                      # bootstrap file to start app
 | ├── config.js                         # app configuration file
 ├── .env.example                        # .env template file
+├── .gitignore                          # git ignore file
+├── .prettierignore                     # prettier ignore file
+├── .stylelintignore                    # stylelint ignore file
 ├── eslint.config.cjs                   # eslint configuration file
 ├── babel.config.cjs                    # babel configuration file
 ├── jest.config.cjs                     # jest configuration file
