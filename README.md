@@ -23,7 +23,7 @@ git clone --depth=1 https://github.com/borisding/express-mvc-esm.git my-project
 cd my-project && npm install
 ```
 
-## Environment variables
+**Environment variables**
 
 Copy `.env.example` template into `.env` file. Please do not commit .env to the git repo.
 
@@ -68,9 +68,6 @@ npm test
 | ├── app.js                            # express app file
 | └── bootstrap.js                      # bootstrap file to start app
 | ├── config.js                         # app configuration file
-├── assets
-| ├── scripts                           # contains frontend script files
-| ├── styles                            # contains frontend style files
 ├── .env.example                        # .env template file
 ├── .eslintrc.cjs                       # eslint configuration file
 ├── babel.config.cjs                    # babel configuration file
