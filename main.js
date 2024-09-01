@@ -1,3 +1,3 @@
 // config file comes first
 import './app/config.js';
-import './app/start.js';
+import './app/bootstrap.js';
