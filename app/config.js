@@ -7,11 +7,15 @@ const result = dotenvExpand.expand(dotenv.config());
 const parsed = result.parsed;
 
 // get parsed/stringified values of dot env variables
+// only env variables with APP_ will be stringified
 export const getDefinedDotEnv = () => {
   if (!parsed) return { parsed: {}, stringified: {} };
 
+  const APP_PREFIX = 'APP_';
   const stringified = Object.keys(parsed).reduce((result, key) => {
-    result[`process.env.${key}`] = JSON.stringify(parsed[key]);
+    if (key.substring(0, 4) === APP_PREFIX) {
+      result[`process.env.${key}`] = JSON.stringify(parsed[key]);
+    }
     return result;
   }, {});
 

@@ -31,6 +31,8 @@ Copy `.env.example` template into `.env` file. Please do not commit .env to the 
 cp .env.example .env
 ```
 
+Please note that only env variables that are prefixed with `APP_` will be stringified.
+
 2. Running application by executing one of the following scripts:
 
 **Development**
