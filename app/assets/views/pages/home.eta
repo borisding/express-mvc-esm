@@ -1,3 +1,7 @@
 <% layout('layouts/main') %>
 
 <h1 class="title">Welcome!</h1>
+
+<p>
+Number of views: <strong><%=it.viewCount%></strong>
+</p>

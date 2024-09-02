@@ -90,9 +90,19 @@ npm test
 └── webpack.config.js                   # webpack configuration file
 ```
 
-## Import Aliases
+## Misc
+
+**Import Aliases**
 
 This starter utilizes Node.js imports. For existing import aliases, please refer to `imports` field in package.json file.
+
+**Sessions**
+
+By default, `cookie-session` is used in this starter. It means session data will be stored in cookie on client side with limited size. To store session data on server side, please use `express-session` with [compatible session stores](https://github.com/expressjs/session?tab=readme-ov-file#compatible-session-stores), such as Redis.
+
+**CSRF Token**
+
+`_csrfToken` needs to be part of the `req.body` in oder to making the request sent successfully.
 
 ## License
 

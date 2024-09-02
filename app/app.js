@@ -4,6 +4,7 @@ import hpp from 'hpp';
 import favicon from 'serve-favicon';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import cookieSession from 'cookie-session';
 import { doubleCsrf } from 'csrf-csrf';
 import { Eta } from 'eta';
 
@@ -28,6 +29,17 @@ const { doubleCsrfProtection, generateToken } = doubleCsrf({
   getTokenFromRequest: req => req.body._csrfToken
 });
 
+// default session options
+const sessionOptions = {
+  name: 'session',
+  keys: [COOKIE_SECRET],
+  maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  cookie: {
+    sameSite: 'lax',
+    secure: !!$env.isProd
+  }
+};
+
 // app view engine and directory config
 const eta = new Eta({
   views: `${$path.assets}/views`,
@@ -51,6 +63,7 @@ app
   .use(helmet())
   .use(httpLogger())
   .use(cookieParser(COOKIE_SECRET))
+  .use(cookieSession(sessionOptions))
   .use(compression())
   .use(express.json())
   .use(express.urlencoded({ extended: true }), hpp())
