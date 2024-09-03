@@ -1,24 +1,20 @@
-import chalk from 'chalk';
 import app from './app.js';
 
 // running express app server
 const PORT = parseInt(process.env.PORT, 10) || 8080;
 const server = app.listen(PORT, () => {
-  console.log(chalk.cyan('App server is up, listening PORT:'), PORT);
+  console.log(`Application is running... (PORT: ${PORT})`);
 });
 
 server.on('error', err => {
-  switch (err.code) {
-    case 'EACCES':
-      console.error(chalk.red('Not enough privileges to run app server.'));
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(chalk.red(`${PORT} is already in use.`));
-      process.exit(1);
-      break;
-    default:
-      throw err;
+  if (err.code === 'EACCES') {
+    console.error('Not enough privileges to run app server.');
+    process.exit(1);
+  } else if (err.code === 'EADDRINUSE') {
+    console.error(`${PORT} is already in use.`);
+    process.exit(1);
+  } else {
+    throw err;
   }
 });
 
