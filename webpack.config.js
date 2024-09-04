@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
-import { WatchAssetFilesPlugin } from '#internal/plugins/WatchAssetFilesPlugin';
+import { WatchAssetFilesPlugin } from '#internal/WatchAssetFilesPlugin';
 import { getDefinedDotEnv } from '#config';
 
 const pathToScripts = `${$path.assets}/scripts`;
