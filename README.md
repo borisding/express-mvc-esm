@@ -69,6 +69,7 @@ npm test
 | ├── app.js                            # express app file
 | └── bootstrap.js                      # bootstrap file to start app
 | ├── config.js                         # app configuration file
+├── internal                            # internal stuff such as tooling related
 ├── .env.example                        # .env template file
 ├── .gitignore                          # git ignore file
 ├── .prettierignore                     # prettier ignore file
