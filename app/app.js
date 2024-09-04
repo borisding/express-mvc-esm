@@ -44,7 +44,8 @@ const sessionOptions = {
 const eta = new Eta({
   views: `${$path.assets}/views`,
   cache: !!$env.isProd,
-  debug: !$env.isProd
+  debug: !$env.isProd,
+  rmWhitespace: true
 });
 
 const app = express();
