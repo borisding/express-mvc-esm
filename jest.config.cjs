@@ -1,14 +1,6 @@
 module.exports = {
   coverageDirectory: '<rootDir>/tests/coverage',
-  collectCoverageFrom: [
-    'app/**/*.js',
-    'assets/**/*.js',
-    'utils/*.js',
-    '!**/node_modules/**',
-    '!public/build',
-    '!app/index.js',
-    '!utils/index.js'
-  ],
+  collectCoverageFrom: ['app/**/*.js', '!**/node_modules/**', '!public/build'],
   moduleFileExtensions: ['js'],
   moduleNameMapper: {
     '\\.(css|scss|sass)$': 'identity-obj-proxy'
