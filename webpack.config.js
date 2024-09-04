@@ -1,5 +1,3 @@
-import path from 'node:path';
-import { glob } from 'glob';
 import webpack from 'webpack';
 import AssetsPlugin from 'assets-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
@@ -7,63 +5,18 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserJSPlugin from 'terser-webpack-plugin';
 import NodemonPlugin from 'nodemon-webpack-plugin';
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts';
+import { WatchAssetFilesPlugin } from '#internal/plugins/WatchAssetFilesPlugin';
 import { getDefinedDotEnv } from '#config';
 
 const pathToScripts = `${$path.assets}/scripts`;
 const pathToStyles = `${$path.assets}/styles`;
 const pathToBuild = `${$path.public}/build`;
+
 const watchedDirectories = [pathToScripts, pathToStyles];
-
-class WatchAssetFilesPlugin {
-  static getEntries() {
-    return function () {
-      const entryFiles = {};
-
-      glob
-        .sync(
-          [`${pathToScripts}/**/*.js`, `${pathToStyles}/**/*.{scss,sass,css}`],
-          { ignore: 'node_modules/**' }
-        )
-        .forEach(file => {
-          const { ext } = path.parse(file);
-          const resolvedFile = path.resolve(file);
-
-          let fileKey = resolvedFile
-            .replace(ext, '')
-            .replace(path.resolve(pathToScripts), '')
-            .replace(path.resolve(pathToStyles), '');
-
-          if (fileKey[0] === path.sep) {
-            fileKey = fileKey.substring(1, fileKey.length);
-          }
-
-          fileKey = fileKey.replaceAll('\\', '/');
-
-          if (Array.isArray(entryFiles[fileKey])) {
-            entryFiles[fileKey].push(resolvedFile);
-          } else {
-            entryFiles[fileKey] = [resolvedFile];
-          }
-        });
-
-      return entryFiles;
-    };
-  }
-
-  apply(compiler) {
-    compiler.hooks.afterCompile.tapAsync(
-      this.constructor.name,
-      this.afterCompile.bind(this)
-    );
-  }
-
-  afterCompile(compilation, callback) {
-    for (const directory of watchedDirectories) {
-      compilation.contextDependencies.add(path.normalize(directory));
-    }
-    callback();
-  }
-}
+const globPatterns = [
+  `${pathToScripts}/**/*.js`,
+  `${pathToStyles}/**/*.{scss,sass,css}`
+];
 
 const webpackConfig = {
   watch: $env.isDev,
@@ -73,7 +26,7 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss', '.sass']
   },
-  entry: WatchAssetFilesPlugin.getEntries(),
+  entry: WatchAssetFilesPlugin.getEntries(globPatterns, watchedDirectories),
   output: {
     publicPath: process.env.PUBLIC_PATH || '/',
     path: pathToBuild,

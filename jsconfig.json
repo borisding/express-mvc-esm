@@ -8,7 +8,8 @@
       "#middleware/*": ["app/middleware/*"],
       "#models/*": ["app/models/*"],
       "#routers/*": ["app/routers/*"],
-      "#build/*": ["public/build/*"]
+      "#build/*": ["public/build/*"],
+      "#internal/*": ["internal/*"]
     }
   }
 }

@@ -50,7 +50,8 @@
     "#middleware/*": "./app/middleware/*.js",
     "#models/*": "./app/models/*.js",
     "#routers/*": "./app/routers/*.js",
-    "#build/*": "./public/build/*.js"
+    "#build/*": "./public/build/*.js",
+    "#internal/*": "./internal/*.js"
   },
   "dependencies": {
     "compression": "^1.7.4",
