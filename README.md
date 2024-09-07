@@ -70,6 +70,11 @@ npm test
 | └── bootstrap.js                      # bootstrap file to start app
 | ├── config.js                         # app configuration file
 ├── internal                            # internal stuff such as tooling related
+├── public                              # contains static files, include built files
+| ├── build                             # contains built script and style files
+| └── favicon.ico                       # favicon file
+├── storage                             # contains logs and/or other resources
+| └── logs                              # logs folder
 ├── .env.example                        # .env template file
 ├── .gitignore                          # git ignore file
 ├── .prettierignore                     # prettier ignore file
@@ -81,11 +86,6 @@ npm test
 ├── main.js                             # main entry file for bootstrapping
 ├── postcss.config.cjs                  # postcss configuration file
 ├── prettier.config.cjs                 # prettier configuration file
-├── public                              # contains static files, include built files
-| ├── build                             # contains built script and style files
-| └── favicon.ico                       # favicon file
-├── storage                             # contains logs and/or other resources
-| └── logs
 ├── stylelint.config.cjs                # stylelint configuration file
 ├── tests                               # contains tests
 └── webpack.config.js                   # webpack configuration file
