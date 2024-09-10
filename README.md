@@ -110,6 +110,16 @@ By default, `cookie-session` is used in this starter. It means session data will
 
 [Tailwindcss](https://tailwindcss.com/) is used as default CSS framework in this starter.
 
+**VS Code Plugins**
+
+Some plugins for better DX and productivity:
+
+1. Eta syntax highlighting: https://marketplace.visualstudio.com/items?itemName=shadowtime2000.eta-vscode
+2. Tailwind CSS IntelliSense: https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+3. Prettier Formatter: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+4. ESLint: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+5. Stylelint: https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
+
 ## License
 
 MIT
