@@ -105,6 +105,10 @@ By default, `cookie-session` is used in this starter. It means session data will
 
 `_csrfToken` needs to be part of the `req.body` in oder to making the request sent successfully.
 
+**Styling**
+
+[Tailwindcss](https://tailwindcss.com/) is used as default CSS framework in this starter.
+
 ## License
 
 MIT
