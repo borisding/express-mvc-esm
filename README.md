@@ -75,6 +75,7 @@ npm test
 | └── favicon.ico                       # favicon file
 ├── storage                             # contains logs and/or other resources
 | └── logs                              # logs folder
+├── tests                               # contains tests
 ├── .env.example                        # .env template file
 ├── .gitignore                          # git ignore file
 ├── .prettierignore                     # prettier ignore file
@@ -87,7 +88,7 @@ npm test
 ├── postcss.config.cjs                  # postcss configuration file
 ├── prettier.config.cjs                 # prettier configuration file
 ├── stylelint.config.cjs                # stylelint configuration file
-├── tests                               # contains tests
+├── tailwind.config.js                  # tailwindcss configuration file
 └── webpack.config.js                   # webpack configuration file
 ```
 
