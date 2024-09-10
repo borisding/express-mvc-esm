@@ -27,9 +27,7 @@
     "*.scss"
   ],
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not IE 10"
+    "defaults"
   ],
   "keywords": [
     "nodejs",
