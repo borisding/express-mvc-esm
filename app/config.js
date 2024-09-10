@@ -28,7 +28,7 @@ const root = path.resolve(process.cwd());
 globalThis.$path = {
   root,
   app: `${root}/app`,
-  assets: `${root}/app/assets`,
+  assets: `${root}/assets`,
   public: `${root}/public`,
   storage: `${root}/storage`
 };

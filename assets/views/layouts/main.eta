@@ -8,11 +8,9 @@
    <%~include('../partials/styles', it)%>
 </head>
 <body>
-  <section class="section">
-    <div class="container">
+  <main>
     <%~it.body%>
-    </div>
-  </section>
+  </main>
   <%~include('../partials/scripts', it)%>
 </body>
 </html>
