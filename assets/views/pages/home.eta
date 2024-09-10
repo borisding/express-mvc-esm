@@ -1,6 +1,6 @@
 <% layout('layouts/main') %>
 
-<h1 class="title">Welcome!</h1>
+<h1 class="font-extrabold lg:text-3xl dark:text-white text-green-500">Welcome!</h1>
 
 <p>
 Number of views: <strong><%=it.viewCount%></strong>

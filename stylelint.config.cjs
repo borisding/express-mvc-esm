@@ -2,6 +2,7 @@ module.exports = {
   extends: ['stylelint-config-standard', 'stylelint-config-standard-scss'],
   rules: {
     'selector-max-id': 1,
-    'selector-class-pattern': null
+    'selector-class-pattern': null,
+    'scss/at-rule-no-unknown': null
   }
 };

@@ -2,6 +2,16 @@
   "editor.formatOnSave": true,
   "prettier.requireConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.includeLanguages": {
+    "eta": "html"
+  },
   "emmet.includeLanguages": {
     "eta": "html"
   }
