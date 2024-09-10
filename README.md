@@ -60,7 +60,6 @@ npm test
 
 ```
 ├── app
-| ├── assets                            # contains asset files (scripts, styles, views)
 | ├── controllers                       # contains controller files
 | ├── helpers                           # contains app helpers files
 | ├── middleware                        # contains express middleware files
@@ -68,7 +67,8 @@ npm test
 | ├── routers                           # contains routers with mounted controller methods
 | ├── app.js                            # express app file
 | └── bootstrap.js                      # bootstrap file to start app
-| ├── config.js                         # app configuration file
+| └── config.js                         # app configuration file
+|── assets                              # contains asset files (scripts, styles, views)
 ├── internal                            # internal stuff such as tooling related
 ├── public                              # contains static files, include built files
 | ├── build                             # contains built script and style files
