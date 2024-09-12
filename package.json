@@ -1,6 +1,6 @@
 {
   "name": "express-esm-mvc",
-  "version": "4.6.1",
+  "version": "4.7.0",
   "description": "Node.js Express MVC boilerplate with ESM support.",
   "main": "main.js",
   "type": "module",
